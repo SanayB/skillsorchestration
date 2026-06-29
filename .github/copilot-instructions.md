@@ -1,0 +1,44 @@
+# Repository custom instructions for GitHub Copilot
+
+**Read `PROJECT_CONTEXT.md` at the repo root before doing anything else in this
+repository.** It holds the architecture summary, the current frontend/backend API
+contract, the decisions log, and current status. Treat it as the source of truth over
+your own assumptions about this codebase — if something here conflicts with what you'd
+otherwise infer from the code, `PROJECT_CONTEXT.md` wins, and the contradiction itself is
+worth flagging to the person you're working with.
+
+## What this repository is
+
+A personal skills library plus the tooling that serves it: a `skills/` folder of
+domain-specific `SKILL.md` files (frontend, backend, sre, business-analysis,
+system-architecture, project-management, and more), an MCP server
+(`skills-mcp-server/`) that exposes them as tools, and a VS Code extension
+(`skills-vscode-extension/`) for browsing and inserting them manually.
+
+## Tools available to you in this repo
+
+An MCP server named `skills` is configured in `.vscode/mcp.json` and is available to you
+in Agent mode. It exposes two tools:
+
+- `list_skills` — lists every skill, its description, and its reference files.
+- `get_skill` — given a skill name, returns that skill's full content (its router plus
+  every reference file). **Call this whenever a request matches a skill's described
+  domain** (frontend, backend, SRE, etc.) rather than relying solely on your own general
+  knowledge of that domain — the skill content reflects specific, current (2026)
+  practices and known issues that may not be in your training data.
+
+## Working across frontend and backend on this project
+
+If you're working on one side of a frontend/backend split that another person owns the
+other side of: **the API contract section of `PROJECT_CONTEXT.md` is the agreed
+interface** between the two. Generate code that matches it exactly. If you need to
+change it, update that section in the same change, and flag the change explicitly in
+your response — don't silently drift the contract without saying so, since the other
+person's AI session won't otherwise know it changed.
+
+## Build and validation
+
+<!-- Fill this in once this becomes a real, running project: how to install
+dependencies, run the dev server, run tests, and any commands that commonly fail or
+need a specific order. Keeping this current measurably improves agent reliability
+in this repo, per GitHub's own guidance on this file. -->

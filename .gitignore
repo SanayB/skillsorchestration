@@ -1,0 +1,15 @@
+# Node dependencies and build output (in both skills-mcp-server/ and skills-vscode-extension/)
+node_modules/
+build/
+dist/
+out/
+*.vsix
+
+# Logs and OS artifacts
+*.log
+.DS_Store
+Thumbs.db
+
+# Anything with real secrets, should one ever end up at the repo root
+.env
+.env.local

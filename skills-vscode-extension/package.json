@@ -1,0 +1,100 @@
+{
+  "name": "skills-library",
+  "displayName": "Skills Library",
+  "description": "Browse and insert your personal SKILL.md library directly into the editor.",
+  "version": "1.0.0",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "skillsLibrary",
+          "title": "Skills Library",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "skillsLibrary": [
+        {
+          "id": "skillsLibrary.tree",
+          "name": "Skills",
+          "contextualTitle": "Skills Library"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "skillsLibrary.refresh",
+        "title": "Skills: Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "skillsLibrary.preview",
+        "title": "Skills: Preview"
+      },
+      {
+        "command": "skillsLibrary.insert",
+        "title": "Skills: Insert at Cursor",
+        "icon": "$(insert)"
+      },
+      {
+        "command": "skillsLibrary.setSkillsPath",
+        "title": "Skills: Set Skills Folder Location"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "skillsLibrary.refresh",
+          "when": "view == skillsLibrary.tree",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "skillsLibrary.insert",
+          "when": "view == skillsLibrary.tree && viewItem == skill",
+          "group": "inline"
+        },
+        {
+          "command": "skillsLibrary.preview",
+          "when": "view == skillsLibrary.tree",
+          "group": "inline"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Skills Library",
+      "properties": {
+        "skillsLibrary.skillsPath": {
+          "type": "string",
+          "default": "",
+          "description": "Absolute path to your skills/ folder (the same folder used by SKILLS_PATH for the skills-mcp-server)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --target=node18",
+    "watch": "npm run build -- --watch",
+    "compile-check": "tsc --noEmit",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.2.1",
+    "esbuild": "^0.28.1",
+    "typescript": "^5.7.2"
+  }
+}

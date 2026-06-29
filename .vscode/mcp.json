@@ -1,0 +1,21 @@
+{
+  // VS Code's native MCP support uses "servers" as the top-level key.
+  // This is DIFFERENT from Cursor and Claude Desktop, which use "mcpServers" —
+  // copying a Cursor/Claude Desktop config here without changing that key
+  // is the single most common MCP setup mistake in VS Code.
+  //
+  // This file is committed to git on purpose: when a teammate clones this
+  // repo and opens it in VS Code, they get this exact server wired in
+  // automatically — no separate setup conversation needed. Only secrets
+  // (none are needed here) would be excluded via .gitignore.
+  "servers": {
+    "skills": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${workspaceFolder}/skills-mcp-server/build/index.js"],
+      "env": {
+        "SKILLS_PATH": "${workspaceFolder}/skills"
+      }
+    }
+  }
+}
