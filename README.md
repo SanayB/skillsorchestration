@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Skill Orchestration
 
 A personal, multi-domain skills library, plus the tooling that serves it to AI coding
@@ -6,17 +5,21 @@ assistants — and the shared-context system that keeps multiple people's AI-ass
 on the same project consistent with each other.
 
 ## Layout
-
-```
 .
+
 ├── skills/                          ← all skill domains (frontend, backend, sre, ...)
+
 ├── skills-mcp-server/                ← MCP server exposing skills as tools
+
 ├── skills-vscode-extension/          ← VS Code sidebar for browsing/inserting skills
+
 ├── .vscode/mcp.json                  ← wires the MCP server into VS Code's Copilot Agent mode
+
 ├── .github/copilot-instructions.md   ← tells Copilot to read PROJECT_CONTEXT.md first
+
 ├── CLAUDE.md                         ← tells Claude Code to read PROJECT_CONTEXT.md first
+
 └── PROJECT_CONTEXT.md                ← the shared, human-maintained source of truth
-```
 
 ## How this solves "two people, one project, no repeated context"
 
@@ -32,12 +35,6 @@ conversation needed with whoever you're working with:
    between frontend and backend, architectural decisions already made, and current
    status. Both people update it as they work. Neither person re-explains the project
    to their AI assistant from scratch — it's already loaded, every session, for free.
-
-This is deliberately *not* a tool that watches your code and tries to auto-generate this
-context — see the discussion in this project's history for why that's a much harder and
-less trustworthy approach. This is automation for *loading* context consistently, paired
-with a lightweight document a human keeps accurate — which is the part automation can't
-reliably do on its own.
 
 ## Setup
 
@@ -55,6 +52,3 @@ Create a new folder under `skills/` with a `SKILL.md` (and an optional `referenc
 folder) following the same pattern as the existing skills. No code changes are needed
 anywhere else — the MCP server and the VS Code extension both discover skills by reading
 the `skills/` folder at runtime.
-=======
-# skillsorchestration
->>>>>>> ab9cdc3f6c8b3bfd6aff8c5d8e7c1656378f3bde
